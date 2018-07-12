@@ -8,7 +8,7 @@
  + 
 
 ## 效果展示
-![qrcode.png](https://raw.githubusercontent.com/MingShined/myscroll.js/master/images/example.png)
+![qrcode.png](https://github.com/MingShined/umi-antd-dva-admin/blob/master/src/assets/images/example.png?raw=true)
 ### [预览地址](http://www.jq22.com/yanshi17444)
 
 ## 运行
