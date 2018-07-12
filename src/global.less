@@ -1,0 +1,77 @@
+body,
+html {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+#root,
+.ant-layout-has-sider {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+}
+
+.ant-layout-sider {
+  width: 256px;
+  box-shadow: 2px 0 6px rgba(0, 21, 41, 0.35);
+}
+
+.trigger {
+  font-size: 18px;
+  line-height: 64px;
+  padding: 0 24px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.trigger:hover {
+  color: #1890ff;
+}
+
+.logo {
+  height: 32px;
+  text-align: center;
+  line-height: 32px;
+  margin: 16px;
+  color: #fff;
+}
+
+.login-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: url('../src/assets/images/login_bg.png') center 110px no-repeat;
+  background-size: 100%;
+  background-color: #f0f2f5;
+  .container {
+    width: 368px;
+    margin: 0 auto;
+    padding-top: 100px;
+    .icon {
+      display: block;
+      font-size: 50px;
+      margin: 0 auto;
+      color: red;
+    }
+    p {
+      text-align: center;
+      margin: 20px 0 30px;
+      color: rgba(0, 0, 0, 0.45);
+      font-size: 20px;
+    }
+  }
+  .login-form {
+    border: 1px solid #eee;
+    input {
+      height: 40px;
+    }
+    button {
+      width: 100%;
+      height: 40px;
+    }
+  }
+}
