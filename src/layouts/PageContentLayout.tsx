@@ -3,7 +3,7 @@ import { Layout } from 'antd';
 import PageFooterLayout from './PageFooterLayout';
 const { Content } = Layout;
 
-export default class BasicLayout extends Component {
+export default class PageContentLayout extends Component {
   render() {
     return (
       <div style={{ overflowY: 'auto', overflowX: 'hidden' }}>

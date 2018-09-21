@@ -1,3 +1,6 @@
+import { resolve } from 'path';
+import proxy from './config/proxy';
+
 function getRouter(router) {
   if (router.routes) {
     router.routes = router.routes
@@ -24,24 +27,39 @@ function getRouter(router) {
         };
       });
   }
-  // console.log(router)s
+  // console.log(router)
   return router;
 }
 
 export default {
+  proxy,
+  alias: {
+    components: resolve(__dirname, './src/components'),
+    src: resolve(__dirname, './src')
+  },
+  publicPath: '/cms/static/',
+  ignoreMomentLocale: true,
   plugins: [
-    'umi-plugin-dva',
     [
-      'umi-plugin-routes',
+      'umi-plugin-react',
       {
-        update(routes) {
-          // console.log(JSON.stringify(routes));
-          return routes.map(item => {
-            return getRouter(item);
-          });
+        antd: true,
+        dva: true,
+        routes: {
+          update(routes) {
+            return routes.map(item => {
+              return getRouter(item);
+            });
+          }
         }
+        // dll: true,
+        // hardSource: true,
+        // dynamicImport: {
+        //   webpackChunkName: true,
+        // },
+        // title: '默认标题',
       }
     ]
-  ],
-  hashHistory: true,
+  ]
+  // exportStatic: true,
 };

@@ -1,8 +1,8 @@
 import { resolve } from 'path';
+// const devPath = 'http://m.kugou.com'
 export default {
   alias: {
-    components: resolve(__dirname, './src/components'),
-    src: resolve(__dirname, './src'),
+    components: resolve(__dirname, './src/components')
   },
   publicPath: '/static/',
   // "copy": [

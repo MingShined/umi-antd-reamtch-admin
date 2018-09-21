@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
-import EditorComponent from '../../components/Editor/Editor';
-import UserService from '../../services/userService';
+import EditorComponent from 'src/components/Editor/Editor';
+import UserService from 'src/services/userService';
 
 export default class EditorPage extends Component {
   async componentDidMount() {

@@ -1,9 +1,9 @@
 import React, { Component, Fragment } from 'react';
-import FoldLine from '../../components/Chart/FoldLine';
 import { FORMERR } from 'dns';
 import { Row, Col, Card } from 'antd';
-import BarGraph from '../../components/Chart/BarGraph';
-import CakeChart from '../../components/Chart/CakeChart';
+import FoldLine from 'src/components/Chart/FoldLine';
+import BarGraph from 'src/components/Chart/BarGraph';
+import CakeChart from 'src/components/Chart/CakeChart';
 
 export default class ChartPage extends Component {
   render() {

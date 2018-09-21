@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
-import AddPage from '../pages/addPage/indexPage';
+import AddPage from 'src/pages/addPage/indexPage';
 
-export default class PageEmptyLayout extends Component {
+export default class EmptyLayout extends Component {
   render() {
     return (
       <Fragment>

@@ -1,6 +1,6 @@
 import request, { errorProcess } from 'src/utils/request';
 
-export default {
+const UserService = {
   async login() {
     return request({
       method: 'get',
@@ -14,3 +14,4 @@ export default {
     });
   }
 };
+export default UserService;

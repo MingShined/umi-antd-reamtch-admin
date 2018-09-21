@@ -1,9 +1,9 @@
 import React from 'react';
 import { Form, Icon, Input, Button, Checkbox, Modal, message } from 'antd';
 import { connect } from 'dva';
-import BaseProps from '../../declare/baseProps';
 import Axios from 'axios';
 import router from 'umi/router';
+import BaseProps from 'src/declare/baseProps';
 const FormItem = Form.Item;
 
 interface UserFormProps extends BaseProps {
@@ -13,12 +13,12 @@ interface UserFormProps extends BaseProps {
 @connect()
 @(Form.create as any)()
 export default class Login extends React.Component<BaseProps, UserFormProps> {
-  // componentWillUpdate() {
-  //   const idToken = localStorage.getItem('idToke');
-  //   if (idToken) {
-  //     router.push('/');
-  //   }
-  // }
+  componentWillUpdate() {
+    const idToken = localStorage.getItem('idToke');
+    if (idToken) {
+      router.push('/');
+    }
+  }
   handleSubmit = e => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {

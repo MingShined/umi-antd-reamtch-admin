@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react';
 import BraftEditor from 'braft-editor';
-import 'braft-editor/dist/braft.css';
 
 export default class EditorComponent extends Component {
   handlChange = content => {

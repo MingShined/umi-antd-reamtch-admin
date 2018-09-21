@@ -1,22 +1,16 @@
 import React, { Component } from 'react';
-import BasicLayout from './BasicLayout';
-import BaseProps from '../declare/baseProps';
 import { withRouter } from 'dva/router';
-import LoginLayout from './LoginLayout';
-import EmptyLayout from './EmptyLayout';
 import router from 'umi/router';
+import BaseProps from 'src/declare/baseProps';
+import LoginLayout from 'src/layouts/LoginLayout';
+import EmptyLayout from 'src/layouts/EmptyLayout';
+import BasicLayout from 'src/layouts/BasicLayout';
 
-class MainLayout extends Component<BaseProps, any> {
-  // componentWillUpdate() {
-  //   const idToken = localStorage.getItem('idToken');
-  //   if (!idToken) {
-  //     router.push('/user/login');
-  //   }
-  // }
+class MainLayout extends Component<any> {
   render() {
     const props = this.props;
     let layout = null;
-    if (props.location.pathname === '/user/login') {
+    if (props.location.pathname === '/login') {
       layout = <LoginLayout />;
     } else if (props.location.pathname === '/addPage') {
       layout = <EmptyLayout />;

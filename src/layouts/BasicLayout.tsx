@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Layout } from 'antd';
-import PageHeaderLayout from './PageHeaderLayout';
-import PageContentLayout from './PageContentLayout';
-import PageSiderLayout from './PageSiderLayout';
+import PageSiderLayout from 'src/layouts/PageSiderLayout';
+import PageHeaderLayout from 'src/layouts/PageHeaderLayout';
+import PageContentLayout from 'src/layouts/PageContentLayout';
 
 const BasicLayout = props => {
   return (

@@ -19,7 +19,7 @@ interface Props extends BaseProps {
 @connect(({ app }) => ({
   collapsed: app.collapsed
 }))
-export default class MainLayout extends Component<BaseProps, Props> {
+export default class PageHeaderLayout extends Component<BaseProps, Props> {
   toggle = () => {
     const { collapsed } = this.props;
     this.props.dispatch({

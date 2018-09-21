@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Layout, Menu, Icon } from 'antd';
 import { connect } from 'dva';
-import BaseProps from '../declare/baseProps';
-import MenuData from '../common/menuData';
 import { spawn } from 'child_process';
 import Link from 'umi/link';
+import BaseProps from 'src/declare/baseProps';
+import menuData from 'src/common/menuData';
 const { Sider } = Layout;
 const SubMenu = Menu.SubMenu;
 const MenuItem = Menu.Item;
@@ -16,14 +16,14 @@ interface Props extends BaseProps {
 @connect(({ app }) => ({
   collapsed: app.collapsed
 }))
-export default class BasicLayout extends Component<BaseProps, Props> {
+export default class PageSiderLayout extends Component<BaseProps, Props> {
   render() {
     const { collapsed } = this.props;
     return (
       <Sider trigger={null} collapsible collapsed={collapsed} width={256}>
         <div className="logo">{collapsed ? '^_^' : 'UMI-ANTD-DVA'}</div>
         <Menu theme="dark" mode="inline" inlineCollapsed={collapsed} defaultSelectedKeys={['主页']}>
-          {MenuData.map(
+          {menuData.map(
             item =>
               item.type === 'SubMenu' ? (
                 <SubMenu

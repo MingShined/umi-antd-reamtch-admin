@@ -10,8 +10,8 @@ let app = dva({
 window.g_app = app;
 app.use(createLoading());
 
-app.model({ namespace: 'app', ...(require('C:/Users/Administrator/Desktop/antd-umi-dva-admin/src/models/app.ts').default) });
-app.model({ namespace: 'user', ...(require('C:/Users/Administrator/Desktop/antd-umi-dva-admin/src/models/user.ts').default) });
+app.model({ namespace: 'app', ...(require('E:/GitHub仓库/umi-antd-dva-admin/src/models/app.ts').default) });
+app.model({ namespace: 'user', ...(require('E:/GitHub仓库/umi-antd-dva-admin/src/models/user.ts').default) });
 
 class DvaContainer extends Component {
   render() {
