@@ -5,6 +5,9 @@ import BaseProps from 'src/declare/baseProps';
 import LoginLayout from 'src/layouts/LoginLayout';
 import EmptyLayout from 'src/layouts/EmptyLayout';
 import BasicLayout from 'src/layouts/BasicLayout';
+import { LocaleProvider } from 'antd';
+import zh_CN from 'antd/lib/locale-provider/zh_CN';
+import 'moment/locale/zh-cn';
 
 class MainLayout extends Component<any> {
   render() {
@@ -17,7 +20,7 @@ class MainLayout extends Component<any> {
     } else {
       layout = <BasicLayout children={props.children} />;
     }
-    return layout;
+    return <LocaleProvider locale={zh_CN}>{layout}</LocaleProvider>;
   }
 }
 

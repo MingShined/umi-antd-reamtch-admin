@@ -1,10 +1,11 @@
 import React, { Component, Fragment } from 'react';
 import BraftEditor from 'braft-editor';
+import 'braft-editor/dist/index.css';
 
 export default class EditorComponent extends Component {
   handlChange = content => {
     // tslint:disable-next-line:no-console
-    console.log(content);
+    // console.log(content);
   };
   render() {
     const editorProps = {
