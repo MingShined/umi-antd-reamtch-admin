@@ -12,18 +12,18 @@ import { connect } from 'dva';
 import BaseProps from '../declare/baseProps';
 const { Header } = Layout;
 
-interface Props extends BaseProps {
-  collapsed: boolean;
+interface PageHeaderLayoutProps extends BaseProps {
+  collapsed?: boolean;
 }
 
-@connect(({ app }) => ({
-  collapsed: app.collapsed
+@connect(({ app: { menuStatus } }) => ({
+  collapsed: menuStatus.collapsed
 }))
-export default class PageHeaderLayout extends Component<BaseProps, Props> {
-  toggle = () => {
-    const { collapsed } = this.props;
-    this.props.dispatch({
-      type: 'app/changeLayoutCollapsed',
+export default class PageHeaderLayout extends Component<PageHeaderLayoutProps> {
+  handleToggleSideMeny = () => {
+    const { collapsed, dispatch } = this.props;
+    dispatch({
+      type: 'app/updateSiderMenuStatus',
       payload: {
         collapsed: !collapsed
       }
@@ -47,7 +47,7 @@ export default class PageHeaderLayout extends Component<BaseProps, Props> {
         <Icon
           className="trigger"
           type={this.props.collapsed ? 'menu-unfold' : 'menu-fold'}
-          onClick={this.toggle}
+          onClick={this.handleToggleSideMeny}
           style={{ fontSize: '24px' }}
         />
         <Popover content={content} placement="topLeft" title="管理员权限" arrowPointAtCenter>

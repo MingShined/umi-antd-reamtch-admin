@@ -3,14 +3,12 @@ import MenuBean, { MenuType } from 'src/common/menuBean';
 const menuData: MenuBean[] = [
   {
     name: '主页',
-    path: '/',
-    icon: 'car',
+    path: '/index',
     type: MenuType.Item
   },
   {
     name: '组件',
-    path: 'car',
-    icon: 'car',
+    path: 'component',
     type: MenuType.SubMenu,
     children: [
       {

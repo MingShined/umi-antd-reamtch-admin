@@ -9,25 +9,45 @@ const { Sider } = Layout;
 const SubMenu = Menu.SubMenu;
 const MenuItem = Menu.Item;
 
-interface Props extends BaseProps {
-  collapsed: boolean;
+interface PageSiderLayoutProps extends BaseProps {
+  collapsed?: boolean;
 }
 
-@connect(({ app }) => ({
-  collapsed: app.collapsed
+@connect(({ app: { menuStatus } }) => ({
+  collapsed: menuStatus.collapsed,
+  openKeys: menuStatus.openKeys,
+  selectedKeys: menuStatus.selectedKeys
 }))
-export default class PageSiderLayout extends Component<BaseProps, Props> {
+export default class PageSiderLayout extends Component<PageSiderLayoutProps> {
+  handleOpenKeys = openKeys => {
+    this.props.dispatch({
+      type: 'app/updateSiderMenuStatus',
+      payload: {
+        openKeys
+      }
+    });
+  }
   render() {
-    const { collapsed } = this.props;
+    const { collapsed, openKeys, selectedKeys } = this.props;
+    // tslint:disable-next-line:no-console
+    console.log(openKeys);
     return (
       <Sider trigger={null} collapsible collapsed={collapsed} width={256}>
         <div className="logo">{collapsed ? '^_^' : 'UMI-ANTD-DVA'}</div>
-        <Menu theme="dark" mode="inline" inlineCollapsed={collapsed} defaultSelectedKeys={['主页']}>
+        <Menu
+          theme="dark"
+          mode="inline"
+          inlineCollapsed={collapsed}
+          openKeys={openKeys}
+          selectedKeys={selectedKeys}
+          onOpenChange={this.handleOpenKeys}
+          // defaultOpenKeys={['component']}
+        >
           {menuData.map(
             item =>
               item.type === 'SubMenu' ? (
                 <SubMenu
-                  key={item.name}
+                  key={item.path}
                   title={
                     <span>
                       <Icon type={item.icon ? item.icon : ''} />
@@ -37,14 +57,14 @@ export default class PageSiderLayout extends Component<BaseProps, Props> {
                 >
                   {item.children
                     ? item.children.map(children => (
-                        <MenuItem key={children.name}>
+                        <MenuItem key={children.path}>
                           <Link to={children.path}>{children.name}</Link>
                         </MenuItem>
                       ))
                     : null}
                 </SubMenu>
               ) : (
-                <MenuItem key={item.name}>
+                <MenuItem key={item.path}>
                   <Link to={item.path}>
                     <Icon type={item.icon} />
                     <span>{item.name}</span>
