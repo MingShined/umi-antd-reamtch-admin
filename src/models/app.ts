@@ -45,7 +45,7 @@ export default {
     handleListMenuStatus({ dispatch, history }) {
       history.listen(({ pathname, query }) => {
         const menuItem = filterMenuOpenKeys(menuData, pathname);
-        const openKeys = menuItem.type === 'SubMenu' ? [menuItem.path] : [''];
+        const openKeys = menuItem && menuItem.type === 'SubMenu' ? [menuItem.path] : [''];
         dispatch({
           type: 'app/updateSiderMenuStatus',
           payload: {
