@@ -1,9 +1,28 @@
-import { transform } from 'src/utils/utils';
+/**
+ * @name 递归数据结构
+ * @param {data} 要转化的数据源
+ */
+export const transform = (data: any, count: number, total: number) => {
+  let value = count;
+  if (!data || data.length === 0) {
+    return null;
+  }
+  value += 1;
+  if (value > total) {
+    return;
+  }
+  return data.map(item => ({
+    value: item.n,
+    label: item.n,
+    children: transform(item.c, value, total)
+  }));
+};
+
 /**
  * @name 城市列表
  * @param value 要转化的枚举对象
  */
-const address = [
+export const address = [
   {
     v: '110000',
     n: '北京市',
@@ -15106,4 +15125,3 @@ const address = [
     c: []
   }
 ];
-export const addressList = transform(address);

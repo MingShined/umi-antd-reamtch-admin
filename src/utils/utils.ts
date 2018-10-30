@@ -24,17 +24,3 @@ export function transformEnumKeys(value) {
   const result = keys.slice(0, keys.length / 2);
   return result;
 }
-/**
- * @name 递归数据结构
- * @param {data} 要转化的数据源
- */
-export const transform = dataSource => {
-  if (!dataSource || dataSource.length === 0) {
-    return null;
-  }
-  return dataSource.map(item => ({
-    value: item.n,
-    label: item.n,
-    children: transform(item.c)
-  }));
-};
