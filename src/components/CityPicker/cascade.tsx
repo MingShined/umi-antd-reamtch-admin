@@ -1,7 +1,5 @@
 /**
- * @Create By MingShined
- * @Date 2018/09/11
- * @name 省市区级联组件
+ * @name 级联
  */
 import React, { Component, Fragment } from 'react';
 import { Input, Form, Select, Col, Cascader } from 'antd';
@@ -11,7 +9,7 @@ import { transform, address } from 'src/utils/address';
 const FormItem = Form.Item;
 const Option = Select.Option;
 
-export default class Cascade extends Component<CityPickerProps, any> {
+export default class Cascade extends Component<CityPickerProps> {
   render() {
     const {
       showCity,

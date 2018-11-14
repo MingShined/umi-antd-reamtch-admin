@@ -1,39 +1,7 @@
-const devPath = 'http://dev.mall.taoqicar.com:8086/';
+const devPath = 'http://10.0.31.68:65137/';
 export default {
-  '/api': {
+  '/api/': {
     target: devPath,
     changeOrigin: false
   },
-  '/mall/api/': {
-    target: devPath,
-    changeOrigin: false
-  },
-  '/miniseller': {
-    target: devPath,
-    changeOrigin: false
-  },
-  '/mallcms': {
-    target: devPath,
-    changeOrigin: false
-  },
-  '/usercenter': {
-    target: devPath,
-    changeOrigin: false
-  },
-  '/message/api': {
-    target: devPath,
-    changeOrigin: false
-  },
-  '/contract': {
-    target: devPath,
-    changeOrigin: false
-  },
-  '/m-site': {
-    target: devPath,
-    changeOrigin: false
-  },
-  '/datashadow': {
-    target: devPath,
-    changeOrigin: false
-  }
 };

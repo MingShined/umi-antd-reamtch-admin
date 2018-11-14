@@ -7,10 +7,17 @@ const UserService = {
       url: '/api/getToken'
     }).then(errorProcess);
   },
-  async getTestData() {
+  async test(data) {
     return request({
-      method: 'GET',
-      url: '/proxy/rank/list&json=true'
+      data,
+      method: 'post',
+      url: '/api/save'
+    });
+  },
+  async list() {
+    return request({
+      method: 'get',
+      url: '/api/list'
     });
   }
 };

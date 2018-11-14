@@ -19,7 +19,7 @@ interface PageSiderLayoutProps extends BaseProps {
   selectedKeys: menuStatus.selectedKeys
 }))
 export default class PageSiderLayout extends Component<PageSiderLayoutProps> {
-  handleOpenKeys = openKeys => {
+  dispatchOpenKeys = openKeys => {
     this.props.dispatch({
       type: 'app/updateSiderMenuStatus',
       payload: {
@@ -29,8 +29,6 @@ export default class PageSiderLayout extends Component<PageSiderLayoutProps> {
   }
   render() {
     const { collapsed, openKeys, selectedKeys } = this.props;
-    // tslint:disable-next-line:no-console
-    console.log(openKeys);
     return (
       <Sider trigger={null} collapsible collapsed={collapsed} width={256}>
         <div className="logo">{collapsed ? '^_^' : 'UMI-ANTD-DVA'}</div>
@@ -40,7 +38,7 @@ export default class PageSiderLayout extends Component<PageSiderLayoutProps> {
           inlineCollapsed={collapsed}
           openKeys={openKeys}
           selectedKeys={selectedKeys}
-          onOpenChange={this.handleOpenKeys}
+          onOpenChange={this.dispatchOpenKeys}
           // defaultOpenKeys={['component']}
         >
           {menuData.map(

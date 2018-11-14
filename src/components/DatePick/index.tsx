@@ -7,13 +7,13 @@ import React, { Component, Fragment } from 'react';
 import { DatePicker } from 'antd';
 import moment from 'moment';
 import BaseProps from 'src/declare/baseProps';
-const { MonthPicker, RangePicker, WeekPicker } = DatePicker;
+const { MonthPicker, WeekPicker, RangePicker } = DatePicker;
 
 interface DatePickProps extends BaseProps {
   type?: string;
   showTime?: boolean;
-  style?: Object;
-  placeholder?: any;
+  style?: React.CSSProperties;
+  placeholder?: string;
 }
 
 const formatDate = (date, showTime: boolean = true, range: boolean = false) => {

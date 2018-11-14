@@ -3,13 +3,6 @@ import EditorComponent from 'src/components/Editor/Editor';
 import UserService from 'src/services/userService';
 
 export default class EditorPage extends Component {
-  async componentDidMount() {
-    const { data, status } = await UserService.getTestData();
-    if (data && status === 200) {
-      // tslint:disable-next-line:no-console
-      console.log(data);
-    }
-  }
   render() {
     return (
       <Fragment>

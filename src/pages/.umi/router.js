@@ -17,14 +17,9 @@ let routes = [
         "component": require('../404.tsx').default
       },
       {
-        "path": "/add/",
+        "path": "/index/",
         "exact": true,
-        "component": require('../addPage/indexPage.tsx').default
-      },
-      {
-        "path": "/chart/",
-        "exact": true,
-        "component": require('../chart/indexPage.tsx').default
+        "component": require('../index/indexPage.tsx').default
       },
       {
         "path": "/editor/",
@@ -32,9 +27,9 @@ let routes = [
         "component": require('../editor/indexPage.tsx').default
       },
       {
-        "path": "/index/",
+        "path": "/add/",
         "exact": true,
-        "component": require('../index/indexPage.tsx').default
+        "component": require('../addPage/indexPage.tsx').default
       },
       {
         "path": "/",
@@ -45,11 +40,16 @@ let routes = [
         "path": "/user/login",
         "exact": true,
         "component": require('../user/loginPage.tsx').default
+      },
+      {
+        "path": "/chart/",
+        "exact": true,
+        "component": require('../chart/indexPage.tsx').default
       }
     ]
   },
   {
-    "component": () => React.createElement(require('E:/GitHub仓库/umi-antd-dva-admin/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: false })
+    "component": () => React.createElement(require('/Users/mingshined/MyProject/umi-antd-dva-admin/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: false })
   }
 ];
 

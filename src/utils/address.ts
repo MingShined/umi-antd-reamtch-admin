@@ -20,7 +20,6 @@ export const transform = (data: any, count: number, total: number) => {
 
 /**
  * @name 城市列表
- * @param value 要转化的枚举对象
  */
 export const address = [
   {
@@ -15125,3 +15124,8 @@ export const address = [
     c: []
   }
 ];
+
+/**
+ * @name 全量addressList数据
+ */
+export const addressList = transform(address, 0, 3);
