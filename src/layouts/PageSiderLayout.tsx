@@ -10,35 +10,30 @@ const SubMenu = Menu.SubMenu;
 const MenuItem = Menu.Item;
 
 interface PageSiderLayoutProps extends BaseProps {
-  collapsed?: boolean;
+  // collapsed?: boolean;
 }
 
-@connect(({ app: { menuStatus } }) => ({
-  collapsed: menuStatus.collapsed,
-  openKeys: menuStatus.openKeys,
-  selectedKeys: menuStatus.selectedKeys
-}))
 export default class PageSiderLayout extends Component<PageSiderLayoutProps> {
-  dispatchOpenKeys = openKeys => {
-    this.props.dispatch({
-      type: 'app/updateSiderMenuStatus',
-      payload: {
-        openKeys
-      }
-    });
-  }
+  // dispatchOpenKeys = openKeys => {
+  //   this.props.dispatch({
+  //     type: 'app/updateSiderMenuStatus',
+  //     payload: {
+  //       openKeys
+  //     }
+  //   });
+  // }
   render() {
-    const { collapsed, openKeys, selectedKeys } = this.props;
+    // const { collapsed, openKeys, selectedKeys } = this.props;
     return (
-      <Sider trigger={null} collapsible collapsed={collapsed} width={256}>
-        <div className="logo">{collapsed ? '^_^' : 'UMI-ANTD-DVA'}</div>
+      <Sider trigger={null} collapsible width={256}>
+        {/* <div className="logo">{collapsed ? '^_^' : 'UMI-ANTD-DVA'}</div> */}
         <Menu
           theme="dark"
           mode="inline"
-          inlineCollapsed={collapsed}
-          openKeys={openKeys}
-          selectedKeys={selectedKeys}
-          onOpenChange={this.dispatchOpenKeys}
+          // inlineCollapsed={collapsed}
+          // openKeys={openKeys}
+          // selectedKeys={selectedKeys}
+          // onOpenChange={this.dispatchOpenKeys}
           // defaultOpenKeys={['component']}
         >
           {menuData.map(

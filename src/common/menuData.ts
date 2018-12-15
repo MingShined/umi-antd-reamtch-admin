@@ -15,12 +15,7 @@ const menuData: MenuBean[] = [
         name: '编辑器',
         path: '/editor',
         type: MenuType.Item
-      },
-      {
-        name: '图表',
-        path: '/chart',
-        type: MenuType.Item
-      },
+      }
     ]
   }
 ];

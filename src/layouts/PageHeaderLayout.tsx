@@ -1,13 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import {
-  Layout,
-  Menu,
-  Icon,
-  Avatar,
-  Dropdown,
-  Button,
-  Popover
-} from 'antd';
+import { Layout, Menu, Icon, Avatar, Dropdown, Button, Popover } from 'antd';
 import { connect } from 'dva';
 import BaseProps from '../declare/baseProps';
 const { Header } = Layout;
@@ -16,19 +8,19 @@ interface PageHeaderLayoutProps extends BaseProps {
   collapsed?: boolean;
 }
 
-@connect(({ app: { menuStatus } }) => ({
-  collapsed: menuStatus.collapsed
-}))
+// @connect(({ app: { menuStatus } }) => ({
+//   collapsed: menuStatus.collapsed
+// }))
 export default class PageHeaderLayout extends Component<PageHeaderLayoutProps> {
-  handleToggleSideMeny = () => {
-    const { collapsed, dispatch } = this.props;
-    dispatch({
-      type: 'app/updateSiderMenuStatus',
-      payload: {
-        collapsed: !collapsed
-      }
-    });
-  };
+  // handleToggleSideMeny = () => {
+  //   const { collapsed, dispatch } = this.props;
+  //   dispatch({
+  //     type: 'app/updateSiderMenuStatus',
+  //     payload: {
+  //       collapsed: !collapsed
+  //     }
+  //   });
+  // };
   render() {
     const content = (
       <div>
@@ -50,7 +42,12 @@ export default class PageHeaderLayout extends Component<PageHeaderLayoutProps> {
           onClick={this.handleToggleSideMeny}
           style={{ fontSize: '24px' }}
         />
-        <Popover content={content} placement="topLeft" title="管理员权限" arrowPointAtCenter>
+        <Popover
+          content={content}
+          placement="topLeft"
+          title="管理员权限"
+          arrowPointAtCenter
+        >
           <span
             style={{ cursor: 'pointer', float: 'right', marginRight: '20px' }}
           >
