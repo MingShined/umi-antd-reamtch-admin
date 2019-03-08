@@ -948,20 +948,20 @@
     lodash "^4.17.10"
     to-fast-properties "^2.0.0"
 
-"@fimbul/bifrost@^0.15.0":
-  version "0.15.0"
-  resolved "http://registry.npm.taobao.org/@fimbul/bifrost/download/@fimbul/bifrost-0.15.0.tgz#f3a48dee3046681e926c1f970f0b1a67e29e088e"
-  integrity sha1-86SN7jBGaB6SbB+XDwsaZ+KeCI4=
+"@fimbul/bifrost@^0.17.0":
+  version "0.17.0"
+  resolved "http://registry.npm.taobao.org/@fimbul/bifrost/download/@fimbul/bifrost-0.17.0.tgz#f0383ba7e40992e3193dc87e2ddfde2ad62a9cf4"
+  integrity sha1-8Dg7p+QJkuMZPch+Ld/eKtYqnPQ=
   dependencies:
-    "@fimbul/ymir" "^0.15.0"
+    "@fimbul/ymir" "^0.17.0"
     get-caller-file "^2.0.0"
     tslib "^1.8.1"
-    tsutils "^3.1.0"
+    tsutils "^3.5.0"
 
-"@fimbul/ymir@^0.15.0":
-  version "0.15.0"
-  resolved "http://registry.npm.taobao.org/@fimbul/ymir/download/@fimbul/ymir-0.15.0.tgz#944c881b14fadf7b43d1ae00b445e42261bb407f"
-  integrity sha1-lEyIGxT633tD0a4AtEXkImG7QH8=
+"@fimbul/ymir@^0.17.0":
+  version "0.17.0"
+  resolved "http://registry.npm.taobao.org/@fimbul/ymir/download/@fimbul/ymir-0.17.0.tgz#4f28389b9f804d1cd202e11983af1743488b7815"
+  integrity sha1-Tyg4m5+ATRzSAuEZg68XQ0iLeBU=
   dependencies:
     inversify "^5.0.0"
     reflect-metadata "^0.1.12"
@@ -1043,6 +1043,11 @@
   integrity sha1-FwON0yLCMl9dplCpTV+ZdJQ2JeM=
   dependencies:
     "@types/react" "*"
+
+"@types/qs@^6.5.1":
+  version "6.5.2"
+  resolved "http://registry.npm.taobao.org/@types/qs/download/@types/qs-6.5.2.tgz#7f347062655056662845ba4bb79dcbfdc382cd61"
+  integrity sha1-fzRwYmVQVmYoRbpLt53L/cOCzWE=
 
 "@types/react-redux@^6.0.9":
   version "6.0.11"
@@ -4172,6 +4177,11 @@ download.js@^1.0.0:
   version "1.0.0"
   resolved "http://registry.npm.taobao.org/download.js/download/download.js-1.0.0.tgz#850536e3dd9e811d00d4992dc12952101e3fab36"
   integrity sha1-hQU2492egR0A1JktwSlSEB4/qzY=
+
+downloadjs@^1.4.7:
+  version "1.4.7"
+  resolved "http://registry.npm.taobao.org/downloadjs/download/downloadjs-1.4.7.tgz#f69f96f940e0d0553dac291139865a3cd0101e3c"
+  integrity sha1-9p+W+UDg0FU9rCkROYZaPNAQHjw=
 
 draft-js@^0.10.0, draft-js@~0.10.0:
   version "0.10.5"
@@ -7343,6 +7353,11 @@ js-base64@^2.1.9:
   version "2.4.5"
   resolved "https://registry.yarnpkg.com/js-base64/-/js-base64-2.4.5.tgz#e293cd3c7c82f070d700fc7a1ca0a2e69f101f92"
   integrity sha1-4pPNPHyC8HDXAPx6HKCi5p8QH5I=
+
+js-cookie@^2.2.0:
+  version "2.2.0"
+  resolved "http://registry.npm.taobao.org/js-cookie/download/js-cookie-2.2.0.tgz#1b2c279a6eece380a12168b92485265b35b1effb"
+  integrity sha1-Gywnmm7s44ChIWi5JIUmWzWx7/s=
 
 js-levenshtein@^1.1.3:
   version "1.1.3"
@@ -12900,21 +12915,21 @@ tslib@^1.9.0:
   resolved "http://registry.npm.taobao.org/tslib/download/tslib-1.9.3.tgz#d7e4dd79245d85428c4d7e4822a79917954ca286"
   integrity sha1-1+TdeSRdhUKMTX5IIqeZF5VMooY=
 
-tslint-config-airbnb@5.11.0:
-  version "5.11.0"
-  resolved "http://registry.npm.taobao.org/tslint-config-airbnb/download/tslint-config-airbnb-5.11.0.tgz#4477fa64e2d8b4282b43666d6a34925c766cc949"
-  integrity sha1-RHf6ZOLYtCgrQ2ZtajSSXHZsyUk=
+tslint-config-airbnb@^5.11.0:
+  version "5.11.1"
+  resolved "http://registry.npm.taobao.org/tslint-config-airbnb/download/tslint-config-airbnb-5.11.1.tgz#51a27fbb8bf24c144d064a274a71da47e7ece617"
+  integrity sha1-UaJ/u4vyTBRNBkonSnHaR+fs5hc=
   dependencies:
-    tslint-consistent-codestyle "^1.13.3"
+    tslint-consistent-codestyle "^1.14.1"
     tslint-eslint-rules "^5.4.0"
-    tslint-microsoft-contrib "~5.2.0"
+    tslint-microsoft-contrib "~5.2.1"
 
-tslint-consistent-codestyle@^1.13.3:
-  version "1.14.1"
-  resolved "http://registry.npm.taobao.org/tslint-consistent-codestyle/download/tslint-consistent-codestyle-1.14.1.tgz#8555f1b05ccbf093166a73347f41eb101731a522"
-  integrity sha1-hVXxsFzL8JMWanM0f0HrEBcxpSI=
+tslint-consistent-codestyle@^1.14.1:
+  version "1.15.1"
+  resolved "http://registry.npm.taobao.org/tslint-consistent-codestyle/download/tslint-consistent-codestyle-1.15.1.tgz#a0c5cd5a5860d40b659c490d8013c5732e02af8c"
+  integrity sha1-oMXNWlhg1AtlnEkNgBPFcy4Cr4w=
   dependencies:
-    "@fimbul/bifrost" "^0.15.0"
+    "@fimbul/bifrost" "^0.17.0"
     tslib "^1.7.1"
     tsutils "^2.29.0"
 
@@ -12938,14 +12953,14 @@ tslint-loader@^3.5.3:
     rimraf "^2.4.4"
     semver "^5.3.0"
 
-tslint-microsoft-contrib@~5.2.0:
+tslint-microsoft-contrib@~5.2.1:
   version "5.2.1"
   resolved "http://registry.npm.taobao.org/tslint-microsoft-contrib/download/tslint-microsoft-contrib-5.2.1.tgz#a6286839f800e2591d041ea2800c77487844ad81"
   integrity sha1-pihoOfgA4lkdBB6igAx3SHhErYE=
   dependencies:
     tsutils "^2.27.2 <2.29.0"
 
-tslint-react@3.6.0:
+tslint-react@^3.6.0:
   version "3.6.0"
   resolved "http://registry.npm.taobao.org/tslint-react/download/tslint-react-3.6.0.tgz#7f462c95c4a0afaae82507f06517ff02942196a1"
   integrity sha1-f0YslcSgr6roJQfwZRf/ApQhlqE=
@@ -13009,10 +13024,17 @@ tsutils@^2.27.2, tsutils@^2.29.0:
   dependencies:
     tslib "^1.8.1"
 
-tsutils@^3.0.0, tsutils@^3.1.0:
+tsutils@^3.0.0:
   version "3.5.2"
   resolved "http://registry.npm.taobao.org/tsutils/download/tsutils-3.5.2.tgz#6fd3c2d5a731e83bb21b070a173ec0faf3a8f6d3"
   integrity sha1-b9PC1acx6DuyGwcKFz7A+vOo9tM=
+  dependencies:
+    tslib "^1.8.1"
+
+tsutils@^3.5.0:
+  version "3.8.0"
+  resolved "http://registry.npm.taobao.org/tsutils/download/tsutils-3.8.0.tgz#7a3dbadc88e465596440622b65c04edc8e187ae5"
+  integrity sha1-ej263IjkZVlkQGIrZcBO3I4YeuU=
   dependencies:
     tslib "^1.8.1"
 

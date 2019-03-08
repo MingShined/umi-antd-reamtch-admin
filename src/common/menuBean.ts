@@ -1,13 +1,18 @@
 export default interface MenuBean {
-  name: string;
+  store?: string;
+  title: string;
   icon?: string;
   path?: string;
-  type?: MenuType;  
   key?: string;
+  type?: MenuType;
+  authority?: any;
+  hideInMenu?: boolean;
   children?: MenuBean[];
 }
 export enum MenuType {
   SubMenu = 'SubMenu',
   ItemGroup = 'ItemGroup',
-  Item = 'Item'
+  Item = 'Item',
+  Url = 'url',
+  NoMenu = 'NoMenu'
 }

@@ -1,41 +1,37 @@
-import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
-import { message } from 'antd';
-declare var window: any;
-
-// import store from '../index.js';
-
-export interface BaseResponse extends AxiosResponse {
-  total?: number;
-  headers: {
-    'X-Total-Count'?: number;
-    'x-total-count'?: number;
-    totalCount?: number;
-    [propName: string]: any;
-  };
-}
-
+import axios, { AxiosRequestConfig } from 'axios';
+import { message, Modal } from 'antd';
+import { Basic } from 'src/types';
+import BaseResponse = Basic.BaseResponse;
+import store from 'src/store';
+import { getToken } from './utils';
+declare var window: Window;
+let outloginFlag = false;
 axios.interceptors.request.use(
-  // tslint:disable-next-line:no-shadowed-variable
-  (request) => {
-    if (!request.headers) {
-      request.headers = { Authorization: getAuthorization() };
+  req => {
+    const token = getAuthorization();
+    if (!req.headers) {
+      if (token) {
+        req.headers = { Authorization: getAuthorization() };
+      }
     } else {
-      request.headers.Authorization = getAuthorization();
+      if (token) {
+        req.headers.Authorization = getAuthorization();
+      }
     }
-    return request;
+    return req;
   },
-  (error) => {
+  error => {
     return Promise.resolve(error);
   }
 );
 axios.interceptors.response.use(
-  (response) => {
+  response => {
     return response;
   },
-  (error) => {
+  error => {
     if (axios.isCancel(error)) {
       const response = {
-        config: {},
+        config: {} as Basic.BaseResponse,
         headers: {},
         status: -999,
         statusText: '中断请求',
@@ -47,30 +43,32 @@ axios.interceptors.response.use(
   }
 );
 function parseJSON(response: BaseResponse) {
-
-  // console.log(response)
   if (response.headers['x-total-count']) {
     response.headers.totalCount = response.headers['x-total-count'];
-    response.total = response.headers['x-total-count'];
+    response.total = +response.headers['x-total-count'];
   }
-  // tslint:disable-next-line:no-console
-  // console.log(response);
   return response;
 }
+const getBackLogin = response => {
+  outloginFlag = true;
+  Modal.warning({
+    content: response.data.message,
+    okText: '确认',
+    onOk: () => {
+      outloginFlag = false;
+      store.dispatch.app.logout();
+    }
+  });
+};
 function checkStatus(response: BaseResponse) {
   if (response.status >= 200 && response.status < 300) {
     return response;
   }
-  const store = window.g_app._store;
   if (response.status === 401) {
-    // message.error(`错误代码：${status} ，Unauthorized/未授权!`);
-    window.localStorage.setItem('id_token', '');
-    window.localStorage.setItem('active', '');
-    window.localStorage.setItem('admin', '');
-    location.replace('#/user/login');
+    if (!outloginFlag) {
+      getBackLogin(response);
+    }
   }
-  // tslint:disable-next-line:no-console
-  // console.log(response);
   return {
     config: response.config,
     headers: response.headers,
@@ -80,85 +78,138 @@ function checkStatus(response: BaseResponse) {
   };
 }
 function getAuthorization() {
-  const store = window.g_app._store;
-  // console.log(store.getState())
-  // tslint:disable-next-line:no-console
-  // tslint:disable-next-line:variable-name
-  const  id_token  = localStorage.getItem('id_token'); // eslint-disable-line
-  if (id_token !== undefined && id_token !== 'undefined') {
-    return `${id_token}`;
+  // let idToken = localStorage.getItem('jhi-authenticationToken'); // eslint-disable-line
+  let idToken = getToken();
+  if (idToken !== undefined && idToken !== 'undefined' && idToken !== null) {
+    idToken = idToken.replace('"', '');
+    idToken = idToken.replace('"', '');
+    return `Bearer ${idToken}`;
   }
-  // tslint:disable-next-line:no-debugger
-  // debugger;
   return undefined;
-
 }
-
+export enum Method {
+  GET = 'GET',
+  POST = 'POST',
+  PUT = 'PUT',
+  DELETE = 'DELETE'
+}
+export interface RequestParams {
+  method: Method | string;
+  url: string;
+  payload?: any;
+}
+export function httpGet<T = any>(url: string, data?: any, options?: any) {
+  const timestr = Date.now();
+  const myurl = `${url}${url.indexOf('?') > -1 ? '&' : '?'}timestr=${timestr}`;
+  return httpRequest<T>({
+    url: myurl,
+    payload: data,
+    method: Method.GET,
+    ...options
+  });
+}
+export function httpPost<T>(url, data?: any, options?: any) {
+  return httpRequest<T>({
+    url,
+    payload: data,
+    method: Method.POST,
+    ...options
+  });
+}
+export function httpPut<T>(url, data?: any, options?: any) {
+  return httpRequest<T>({
+    url,
+    payload: data,
+    method: Method.PUT,
+    ...options
+  });
+}
+export function httpDelete<T>(url, data?: any, options?: any) {
+  return httpRequest<T>({
+    url,
+    payload: data,
+    method: Method.DELETE,
+    ...options
+  });
+}
+export function httpRequest<T>(req: RequestParams): Promise<BaseResponse<T>> {
+  return request({
+    ...req,
+    [req.method === Method.GET ? 'params' : 'data']: req.payload
+  }).then(errorProcess);
+}
 export default function request(options: AxiosRequestConfig) {
   return axios(options)
     .then(checkStatus)
     .then(parseJSON);
 }
 export function errorProcess(response: BaseResponse) {
-  const { status , data } = response;
-  if (data && data.message) {
-    message.error(data.message);
-    return response;
+  const { status, data, config } = response;
+  const statusFilter = config.headers.statusFilter;
+  if (statusFilter) {
+    switch (statusFilter.type) {
+      case 'all':
+        break;
+      case 'blacklist':
+        if (!statusFilter.list.find(item => +item === +status)) {
+          if (data && data.message) {
+            message.error(data.message);
+            return response;
+          }
+          const errorMsg = getErrorMessage(status);
+          if (errorMsg) {
+            message.error(`错误代码：${status} ，${errorMsg}`);
+          }
+        }
+        break;
+      case 'whitelist':
+        if (statusFilter.list.find(item => +item === +status)) {
+          if (data && data.message) {
+            message.error(data.message);
+            return response;
+          }
+          const errorMsg = getErrorMessage(status);
+          if (errorMsg) {
+            message.error(`错误代码：${status} ，${errorMsg}`);
+          }
+        }
+        break;
+      default:
+        break;
+    }
+  } else {
+    if (data && data.message) {
+      message.error(data.message);
+      return response;
+    }
+    const errorMsg = getErrorMessage(status);
+    if (errorMsg) {
+      message.error(`错误代码：${status} ，${errorMsg}`);
+    }
   }
-  if (status === 500) {
-    message.error(`错误代码：${status} ，Internal Server Error/内部服务器错误!`);
-  }
-  if (status === 501) {
-    message.error(`错误代码：${status} ，Not Implemented/未实现!`);
-  }
-  if (status === 502) {
-    message.error(`错误代码：${status} ，Bad Gateway/错误的网关!`);
-  }
-  if (status === 503) {
-    message.error(`错误代码：${status} ，Service Unavailable/服务无法获得!`);
-  }
-  if (status === 504) {
-    message.error(`错误代码：${status} ，Gateway Timeout/网关超时!`);
-  }
-  if (status === 505) {
-    message.error(`错误代码：${status} ，HTTP Version Not Supported/不支持的 HTTP 版本!`);
-  }
-  if (status === 400) {
-    message.error(`错误代码：${status} ，Bad Request/错误请求!`);
-  }
-  if (status === 401) {
-    message.error(`错误代码：${status} ，Unauthorized/未授权!`);
-    // window.localStorage.setItem('id_token', '');
-    // window.localStorage.setItem('active', '');
-    // window.localStorage.setItem('admin', '');
-    // location.replace('#/login');
-  }
-  if (status === 403) {
-    message.error(`错误代码：${status} ，Forbidden/禁止!`);
-  }
-  if (status === 404) {
-    message.error(`错误代码：${status} ，Not Found/未找到资源!`);
-  }
-  if (status === 405) {
-    message.error(`错误代码：${status} ，Method Not Allowed/方法未允许!`);
-  }
-  if (status ===  406) {
-    message.error(`错误代码：${status} ，Not Acceptable/无法访问!`);
-  }
-  if (status === 407) {
-    message.error(`错误代码：${status} ，Proxy Authentication Required/代理服务器认证要求!`);
-  }
-  if (status === 408) {
-    message.error(`错误代码：${status} ，Request Timeout/请求超时!`);
-  }
-  if (status === 409) {
-    message.error(`错误代码：${status} ，Conflict/冲突!`);
-  }
-  if (status  === 410) {
-    message.error(`错误代码：${status} ，Gone/已经不存在!`);
-  }
-  if (status  === 417) {
-    message.error(`错误代码：${status} ，Expectation Failed/请求头信息期望失败!`);
-  }
+
   return response;
+}
+
+function getErrorMessage(statusCode: number): string | undefined {
+  const statusMsgMap = {
+    400: 'Bad Request/错误请求!',
+    401: 'Unauthorized/未授权!',
+    403: 'Forbidden/禁止!',
+    404: 'Not Found/未找到资源!',
+    405: 'Method Not Allowed/方法未允许!',
+    406: 'Not Acceptable/无法访问!',
+    407: 'Proxy Authentication Required/代理服务器认证要求!',
+    408: 'Request Timeout/请求超时!',
+    409: 'Conflict/冲突!',
+    410: 'Gone/已经不存在!',
+    417: 'Expectation Failed/请求头信息期望失败!',
+    500: 'Internal Server Error/内部服务器错误!',
+    501: 'Not Implemented/未实现!',
+    502: 'Bad Gateway/错误的网关!`',
+    503: 'Service Unavailable/服务无法获得!',
+    504: 'Gateway Timeout/网关超时!',
+    505: 'HTTP Version Not Supported/不支持的 HTTP 版本!'
+  };
+  return statusMsgMap[statusCode];
 }

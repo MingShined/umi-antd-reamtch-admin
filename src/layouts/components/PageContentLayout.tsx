@@ -9,7 +9,7 @@ export default class PageContentLayout extends Component {
       <div style={{ overflowY: 'auto', overflowX: 'hidden' }}>
         <Content
           style={{
-            margin: '24px 24px 0',
+            // margin: '24px 24px 0',
             // padding: 24,
             minHeight: '760px'
           }}

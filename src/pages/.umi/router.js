@@ -19,37 +19,30 @@ let routes = [
         "_title_default": "umi-ts-rematch"
       },
       {
-        "path": "/index/",
-        "exact": true,
-        "component": require('../index/indexPage.tsx').default,
-        "_title": "umi-ts-rematch",
-        "_title_default": "umi-ts-rematch"
-      },
-      {
-        "path": "/editor/",
-        "exact": true,
-        "component": require('../editor/indexPage.tsx').default,
-        "_title": "umi-ts-rematch",
-        "_title_default": "umi-ts-rematch"
-      },
-      {
-        "path": "/add/",
-        "exact": true,
-        "component": require('../addPage/indexPage.tsx').default,
-        "_title": "umi-ts-rematch",
-        "_title_default": "umi-ts-rematch"
-      },
-      {
-        "path": "/",
-        "exact": true,
-        "component": require('../indexPage.tsx').default,
-        "_title": "umi-ts-rematch",
-        "_title_default": "umi-ts-rematch"
-      },
-      {
         "path": "/user/login",
         "exact": true,
         "component": require('../user/loginPage.tsx').default,
+        "_title": "umi-ts-rematch",
+        "_title_default": "umi-ts-rematch"
+      },
+      {
+        "path": "/index/good/",
+        "exact": true,
+        "component": require('../index/good/indexPage.tsx').default,
+        "_title": "umi-ts-rematch",
+        "_title_default": "umi-ts-rematch"
+      },
+      {
+        "path": "/index/good/addGood",
+        "exact": true,
+        "component": require('../index/good/addGoodPage.tsx').default,
+        "_title": "umi-ts-rematch",
+        "_title_default": "umi-ts-rematch"
+      },
+      {
+        "path": "/index/customer/",
+        "exact": true,
+        "component": require('../index/customer/indexPage.tsx').default,
         "_title": "umi-ts-rematch",
         "_title_default": "umi-ts-rematch"
       }

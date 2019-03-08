@@ -1,9 +1,9 @@
 import { init, ModelConfig, Models as RModels, ModelEffects } from '@rematch/core';
 import { connect as reduxConnect } from 'react-redux';
 import createLoadingPlugin from '@rematch/loading';
-
+import app from './stores/app';
 const models = {
-  
+  app
 };
 
 export type InitModels = typeof models;

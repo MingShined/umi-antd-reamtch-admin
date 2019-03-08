@@ -3,6 +3,12 @@ import { AxiosResponse } from 'axios';
 import { Location } from 'history';
 import { WrappedFormUtils } from 'antd/lib/form/Form';
 
+export interface Paginate {
+  page: number;
+  pageSize: number;
+  total: number;
+}
+
 export namespace Basic {
   export interface BaseResponse<T = any> extends AxiosResponse<T> {
     total?: number;
