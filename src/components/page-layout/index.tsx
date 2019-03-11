@@ -9,6 +9,7 @@ import store, { connect, Models } from 'store';
 import { RematchRootState, RematchDispatch } from '@rematch/core';
 import Link from 'umi/link';
 import _ from 'lodash';
+import styles from './index.less';
 
 const mapState = ({ ['app']: state }: RematchRootState<Models>) => ({
   ...state
@@ -29,32 +30,20 @@ export default class PageLayout extends Component<Props> {
   render() {
     const { children, extra, breadCrumbs, collapsed } = this.props;
     return (
-      <div style={{ overflow: 'auto' }}>
-        <div
-          style={{
-            padding: '15px 25px 15px 0',
-            backgroundColor: '#fff',
-            margin: 0,
-            position: 'fixed',
-            top: 64,
-            width: 'calc(100% - 256px)',
-            zIndex: 99,
-            // lineHeight: '65px',
-            boxSizing: 'border-box',
-            overflow: 'hidden',
-            display: 'flex',
-            flexDirection: 'row',
-            justifyContent: 'space-between'
-          }}
-        >
+      <Fragment>
+        <div className={styles.pageLayout}>
           <div>
             <Icon
-              className="trigger"
+              className={styles.trigger}
               type={this.props.collapsed ? 'menu-unfold' : 'menu-fold'}
-              style={{ fontSize: '24px' }}
-              onClick={() => store.dispatch.app.updateState({ collapsed: !collapsed })}
+              onClick={() =>
+                store.dispatch.app.updateState({ collapsed: !collapsed })
+              }
             />
-            <Breadcrumb style={{ display: 'inline' }} separator=" > ">
+            <Breadcrumb
+              style={{ display: 'inline', marginLeft: 20 }}
+              separator=" > "
+            >
               {breadCrumbs.map(item => (
                 <Breadcrumb.Item key={item.path}>
                   {item.type === 'Item' ? (
@@ -70,12 +59,14 @@ export default class PageLayout extends Component<Props> {
               ))}
             </Breadcrumb>
           </div>
-          <div style={{ float: 'right' }}>{extra}</div>
+          <div>{extra}</div>
         </div>
-        <div style={{ margin: '78px 24px 24px 24px', overflow: 'auto' }}>
+        <div
+          style={{ padding: '24px', overflow: 'auto', display: 'flex', flex: 1 }}
+        >
           {children}
         </div>
-      </div>
+      </Fragment>
     );
   }
 }

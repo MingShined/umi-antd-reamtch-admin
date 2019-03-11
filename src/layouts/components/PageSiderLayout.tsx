@@ -97,8 +97,13 @@ export default class PageSiderLayout extends Component<PageSiderLayoutProps> {
     // tslint:disable-next-line:no-console
     console.log(keys);
     return (
-      <Sider trigger={null} collapsible collapsed={collapsed} width={256}>
-        <div className="logo">{collapsed ? '^_^' : 'UMI-ANTD-DVA'}</div>
+      <Sider
+        trigger={null}
+        collapsible
+        collapsed={collapsed}
+        width={256}
+        style={{ boxShadow: '2px 0 6px rgba(0, 21, 41, 0.35)' }}
+      >
         <Menu
           theme="dark"
           mode="inline"

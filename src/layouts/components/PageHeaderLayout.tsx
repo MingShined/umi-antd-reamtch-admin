@@ -2,14 +2,30 @@ import React, { Component } from 'react';
 import { Layout, Icon, Avatar, Button, Popover } from 'antd';
 import { Basic } from 'src/types';
 import Link from 'umi/link';
+import { RematchRootState, Models, RematchDispatch } from '@rematch/core';
+import { connect } from 'src/store';
 const { Header } = Layout;
 
 interface PageHeaderLayoutProps extends Basic.BaseProps {
   collapsed?: boolean;
 }
 
+const mapState = ({ ['app']: state }: RematchRootState<Models>) => ({
+  ...state
+});
+const mapDispatch = ({  }: RematchDispatch<Models>) => ({});
+interface PageSiderLayoutProps
+  extends Partial<ReturnType<typeof mapState>>,
+    Partial<ReturnType<typeof mapDispatch>>,
+    Basic.BaseProps {}
+
+@connect(
+  mapState,
+  mapDispatch
+)
 export default class PageHeaderLayout extends Component<PageHeaderLayoutProps> {
   render() {
+    const { collapsed } = this.props;
     const content = (
       <div>
         <Button disabled style={{ border: 'none', display: 'block' }}>
@@ -25,7 +41,16 @@ export default class PageHeaderLayout extends Component<PageHeaderLayoutProps> {
       </div>
     );
     return (
-      <Header style={{ background: '#001529', padding: 0 }}>
+      <Header
+        style={{
+          background: '#001529',
+          padding: '0 24px',
+          display: 'flex',
+          justifyContent: 'space-between',
+          color: '#fff'
+        }}
+      >
+        <div className="logo">{collapsed ? '^_^' : 'Umi-Antd-Rematch'}</div>
         <Popover
           content={content}
           placement="topLeft"
@@ -33,9 +58,7 @@ export default class PageHeaderLayout extends Component<PageHeaderLayoutProps> {
           trigger="click"
           arrowPointAtCenter
         >
-          <span
-            style={{ cursor: 'pointer', float: 'right', marginRight: '20px' }}
-          >
+          <span style={{ cursor: 'pointer' }}>
             <Avatar src="https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png" />
             管理员
           </span>

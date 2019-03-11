@@ -51,7 +51,7 @@ let routes = [
     "_title_default": "umi-ts-rematch"
   },
   {
-    "component": () => React.createElement(require('/Users/mingshined/MyProject/umi-antd-dva-admin/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: false }),
+    "component": () => React.createElement(require('/Users/mingshined/MyProject/umi-antd-rematch-admin/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: false }),
     "_title": "umi-ts-rematch",
     "_title_default": "umi-ts-rematch"
   }

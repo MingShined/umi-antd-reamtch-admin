@@ -16,10 +16,10 @@ export default class BasicLayout extends Component<Props> {
     const { children } = this.props;
     // const {} = this.state;
     return (
-      <Layout>
-        <PageSiderLayout />
-        <Layout>
-          <PageHeaderLayout />
+      <Layout style={{ display: 'flex', flex: 1, height: '100%' }}>
+        <PageHeaderLayout />
+        <Layout style={{ display: 'flex' }}>
+          <PageSiderLayout />
           <PageContentLayout children={children} />
         </Layout>
       </Layout>
